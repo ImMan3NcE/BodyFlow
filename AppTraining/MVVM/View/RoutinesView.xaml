@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTraining.MVVM.View.RoutinesView"
+             Title="RoutinesView"
+             BackgroundColor="black"
+             NavigationPage.HasNavigationBar="False">
+    <!--xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"-->
+    <!--xmlns:acrylic="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"-->
+
+
+    <Grid RowDefinitions=".19*,.81*" >
+        <Image Grid.Row="0" Grid.RowSpan="2" Source="bgrv" Style="{StaticResource ImageBG}" />
+
+        <VerticalStackLayout Spacing="20" Margin="0,10,0,0">
+
+
+            <HorizontalStackLayout   Spacing="15" HorizontalOptions="Center" >
+
+
+                <Button x:Name="btnLevelHard"  Command="{Binding SelectedFilter}" CommandParameter="{Binding Source={x:Reference Name=btnLevelHard}, Path=Text}" 
+                    Text="Hard" Style="{StaticResource ButtonRoutineLevel}"/>
+                <Button x:Name="btnLevelMedium" Command="{Binding SelectedFilter}" CommandParameter="{Binding Source={x:Reference Name=btnLevelMedium}, Path=Text}" 
+                    Text="Medium" Style="{StaticResource ButtonRoutineLevel}"/>
+                <Button x:Name="btnLevelEasy" Command="{Binding SelectedFilter}" CommandParameter="{Binding Source={x:Reference Name=btnLevelEasy}, Path=Text}" 
+                    Text="Easy"  Style="{StaticResource ButtonRoutineLevel}"/>
+                <Button x:Name="btnLevelAll" Command="{Binding SelectedFilter}" CommandParameter="{Binding Source={x:Reference Name=btnLevelAll}, Path=Text}" 
+         Text="All"   Style="{StaticResource ButtonRoutineLevel}"/>
+
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="clcViewTypeOfExercises" ItemsSource="{Binding TypeOfExercises}" ItemsLayout="HorizontalGrid" HorizontalOptions="Center">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Text="{Binding .}" Style="{StaticResource ButtonRoutineTypeOfExercises}" Margin="2.5,0,2.5,0"
+                         Command="{Binding BindingContext.SelectedFilter, Source={x:Reference Name=clcViewTypeOfExercises}}" CommandParameter="{Binding .}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--<HorizontalStackLayout Spacing="10" HorizontalOptions="Start" WidthRequest="350" >
+                <Button Text="#abs" Style="{StaticResource ButtonRoutineTypeOfExercises}" 
+                        Command="{Binding SelectedFilter}" 
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="#cardio" Style="{StaticResource ButtonRoutineTypeOfExercises}"
+                        Command="{Binding SelectedFilter}" 
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="#legs" Style="{StaticResource ButtonRoutineTypeOfExercises}"
+                        Command="{Binding SelectedFilter}" 
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="#pull" Style="{StaticResource ButtonRoutineTypeOfExercises}"
+                        Command="{Binding SelectedFilter}" 
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="#push" Style="{StaticResource ButtonRoutineTypeOfExercises}"
+                        Command="{Binding SelectedFilter}" 
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                
+            </HorizontalStackLayout>-->
+
+        </VerticalStackLayout>
+
+        <CollectionView x:Name="clcView" Grid.Row="1" ItemsSource="{Binding RoutinesList}" Margin="2" VerticalScrollBarVisibility="Never" >
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Grid Margin="20,5,20,20" >
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.GenerateTraining, Source={x:Reference Name=clcView}}" CommandParameter="{Binding .}"/>
+                        </Grid.GestureRecognizers>
+
+                        <Border BackgroundColor="DarkGray" Stroke="DarkSlateGray" StrokeThickness="3" Opacity=".2" >
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12,120,12,120" />
+                            </Border.StrokeShape>
+                            <Border.Shadow>
+                                <Shadow Opacity="0.9"/>
+                            </Border.Shadow>
+                        </Border>
+
+                        <Grid ColumnDefinitions=".6*,.3*,.1*" RowDefinitions=".6*,.2*,.2*" Style="{StaticResource GridTemplateRoutines}" >
+                            <Image Grid.Column="0" Grid.Row="0" Source="{Binding Base}" Grid.RowSpan="3" Grid.ColumnSpan="3"  MaximumWidthRequest="126" MaximumHeightRequest="106" HorizontalOptions="End" Margin="0,0,50,0" />
+                            <Label Text="{Binding RoutineName}" Style="{StaticResource LabelRoutineName}"  Grid.ColumnSpan="2"/>
+                            <Label Grid.Row="1" Text="{Binding Level}" Style="{StaticResource LabelRoutineLevel}"  />
+                            <ImageButton Grid.Column="2" Grid.RowSpan="3" Style="{StaticResource ButtonFavorite}" Source="{Binding ImgFavorite}" Command="{Binding BindingContext.FavoriteRoutine, Source={x:Reference Name=clcView}}" CommandParameter="{Binding .}" SemanticProperties.Description="Favorites button" />
+                            <Label Grid.Row="2" Text="{Binding TypeOfExercises}" Style="{StaticResource LabelRoutineLevel}" Margin="0,0,0,0" Grid.ColumnSpan="3"/>
+                        </Grid>
+
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </Grid>
+</ContentPage>

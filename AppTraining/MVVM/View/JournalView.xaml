@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AppTraining.MVVM.ModelView"
+             x:Class="AppTraining.MVVM.View.JournalView"
+             Title="JournalView"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="DarkGray" >
+
+    
+    
+    
+    <Grid  BackgroundColor="DarkGray" Margin="1">
+        
+        <Image  Source="bgrv" Opacity="0.4" Aspect="AspectFill" />
+
+        <CollectionView x:Name="clcJV" Grid.Row="1" ItemsSource="{Binding WorkoutNotes}" ItemsLayout="VerticalGrid"
+                        SelectionMode="Single" SelectedItem="{Binding Selection, Mode=TwoWay}"  SelectionChangedCommand="{Binding SelectNote}" SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clcJV}}" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems >
+                                <!--<SwipeItem Text="Delete" BackgroundColor="Gray" Command="{Binding Source={RelativeSource AncestorType=(x:Type local:JournalViewModel}}, Path=DeleteNoteCommand}" />-->
+                                <SwipeItem Text="Delete" IconImageSource="delete_jv" BackgroundColor="Gray" Command="{Binding Source={RelativeSource AncestorType={x:Type local:JournalViewModel}}, Path=DeleteNoteCommand}" />
+                                <SwipeItem Text="Update" IconImageSource="refresh_jv" BackgroundColor="DimGray" Command="{Binding Source={RelativeSource AncestorType={x:Type local:JournalViewModel}}, Path=UpdateNoteCommand}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+
+                        <Border BackgroundColor="DarkSlateGray" Stroke="Gray">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="120,120,12,12" />
+                            </Border.StrokeShape>
+                            <Border.Shadow>
+                                <Shadow Opacity="0.9"/>
+                            </Border.Shadow>
+
+                            <Grid  RowDefinitions="Auto,Auto,*" HeightRequest="100"  Margin="10" >
+                                
+                                <Label Text="{Binding WorkoutDate}"  Style="{StaticResource WorkoutDateLabelJV}" />
+                                <Label Grid.Row="1" Text="{Binding WorkoutName}"  Style="{StaticResource WorkoutNameLabelJV}"/>
+                                <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Note}" Margin="10,0,0,0" />
+
+                            </Grid>
+                        </Border>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <ImageButton Grid.Row="1" Source="addicon.png"  Command="{Binding AddNewNoteCommand}" Style="{StaticResource ImageButtonAddNote}" />
+        
+    </Grid>
+</ContentPage>

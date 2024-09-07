@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="AppTraining.MVVM.View.PopUpJournal"  >
+    
+    <VerticalStackLayout MinimumHeightRequest="200"  MinimumWidthRequest="200" BackgroundColor="DarkSlateGray">
+        <Entry x:Name="entryRN" Placeholder="Routine Name / Training Name" Text="{Binding WorkoutNameNote, Mode=TwoWay}" TextColor="White" ClearButtonVisibility="WhileEditing"/>
+        <DatePicker Date="{Binding WorkoutDateNote, Mode=TwoWay}" Format="yyyy/MM/dd" TextColor="White"/>
+        <Editor Placeholder="Notes" Text="{Binding Note}" TextColor="White" AutoSize="TextChanges"  />
+
+        <Button Text="{Binding BtnText}" Command="{Binding AddOrUpdateCommand}" Clicked="ClosePopup" VerticalOptions="End"  BorderColor="Black" BackgroundColor="DarkGrey" BorderWidth="1"/>
+    </VerticalStackLayout>
+</mct:Popup>

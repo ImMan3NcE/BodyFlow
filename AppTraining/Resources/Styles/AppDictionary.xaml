@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="White"/>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="TextColor" Value="White"/>
+    </Style>
+
+    <!--#region JournalView -->
+    <Style x:Key="WorkoutDateLabelJV" TargetType="Label">
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="Subtitle"/>
+    </Style>
+    <Style x:Key="WorkoutNameLabelJV" TargetType="Label">
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="Subtitle"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+
+    <Style x:Key="ImageButtonAddNote" TargetType="ImageButton">
+        <Setter Property="VerticalOptions" Value="End"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="Margin" Value="15"/>
+        <Setter Property="BackgroundColor" Value="LightSlateGray"/>
+        <Setter Property="CornerRadius" Value="12"/>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region RoutineView -->
+
+    <Style x:Key="ImageBG" TargetType="Image">
+        <Setter Property="Opacity" Value="0.3"/>
+        <Setter Property="Aspect" Value="AspectFill"/>
+    </Style>
+
+    <Style x:Key="ButtonRoutineLevel" TargetType="Button">
+        <Setter Property="CornerRadius" Value="22"/>
+        <Setter Property="HeightRequest" Value="50"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="BorderColor" Value="DarkSlateGray"/>
+        <Setter Property="BorderWidth" Value="3"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+
+    <Style x:Key="ButtonRoutineTypeOfExercises" TargetType="Button">
+        <Setter Property="CornerRadius" Value="2"/>
+        <Setter Property="HeightRequest" Value="50"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="BorderColor" Value="DarkSlateGray"/>
+        <Setter Property="BorderWidth" Value="6"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+
+    <Style x:Key="GridTemplateRoutines" TargetType="Grid">
+        <Setter Property="HeightRequest" Value="150"/>
+        <Setter Property="Margin" Value="15,10,10,10"/>
+    </Style>
+
+    <Style x:Key="LabelRoutineName" TargetType="Label">
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="Title"/>
+    </Style>
+    <Style x:Key="LabelRoutineLevel" TargetType="Label">
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="Subtitle"/>
+    </Style>
+
+    <Style x:Key="ButtonFavorite" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+
+    <!--#endregion-->
+
+
+    <!--#region TrainingView -->
+
+    <Style x:Key="LabelLevelExercise" TargetType="Label">
+        <Setter Property="FontSize" Value="Subtitle"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+
+
+    <!--#region CoverFlowView -->
+    
+    <Style x:Key="BorderCoverFlowVIew" TargetType="Border" >
+        <Setter Property="BackgroundColor" Value="DarkGray"/>
+        <Setter Property="Stroke" Value="DarkSlateGray"/>
+        <Setter Property="Opacity" Value=".2"/>
+    </Style>
+
+    <Style x:Key="ImgExercise" TargetType="Image" >
+        <Setter Property="Aspect" Value="AspectFit"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+
+    <Style x:Key="BorderCoverFlowVIew2" TargetType="Border" >
+        <Setter Property="BackgroundColor" Value="Black"/>
+        <Setter Property="Stroke" Value="DarkSlateGray"/>
+        <Setter Property="Opacity" Value=".6"/>
+    </Style>
+
+    <Style x:Key="LabelExerciseName" TargetType="Label">
+        <Setter Property="FontSize" Value="Title"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region StopWatch -->
+    
+    <Style x:Key="StopwatchFrame" TargetType="Frame" >
+        <Setter Property="BorderColor" Value="Red"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="Margin" Value="0,10,0,0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="CornerRadius" Value="0"/>
+    </Style>
+    
+    <Style x:Key="LabelStopwatch" TargetType="Label">
+        <Setter Property="FontSize" Value="Subtitle"/>
+        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource White} }"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+    <Style x:Key="LabelTimeStopwatch" TargetType="Label">
+        <Setter Property="FontSize" Value="Title"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="TextColor" Value="Red"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontFamily" Value="destroy"/>
+        <Setter Property="Margin" Value="25,0,0,0"/>
+        <!--<Setter Property="FontAttributes" Value="Bold"/>-->
+    </Style>
+
+    <Style x:Key="ImgButtonStartStop" TargetType="ImageButton">
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="Margin" Value="0,10,0,10"/>
+    </Style>
+    <!--#endregion-->
+
+
+    <!--#endregion-->
+
+
+
+
+
+</ResourceDictionary>

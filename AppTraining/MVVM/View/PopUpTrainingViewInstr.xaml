@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="AppTraining.MVVM.View.PopUpTrainingViewInstr"
+             Color="Black" >
+
+
+    <Border Stroke="DarkSlateGray" StrokeThickness="4" BackgroundColor="Transparent" >
+
+        <Grid>
+            <Image Source="bgrv.png" Opacity=".2" Aspect="AspectFill"/>
+
+            <ScrollView   Padding="0" Margin="10" >
+
+                <VerticalStackLayout>
+                    <!--<Image Source="abs.png" Aspect="AspectFill" Opacity=".4"/>-->
+                    <Label Text="{Binding cycles}"  FontSize="Subtitle" FontAttributes="Bold"/>
+                    <Label Text="Rest 3 minutes between sets."  FontSize="Subtitle" FontAttributes="Bold"/>
+                    <Label Text="Rest 1 minute between exercises."  FontSize="Subtitle" FontAttributes="Bold"/>
+
+
+
+
+                    <VerticalStackLayout Margin="10">
+                        <Label Text="Instructions" VerticalOptions="Start"  HorizontalOptions="Center"  FontSize="Title" FontAttributes="Bold"/>
+                        
+                        <Label Text="1. Exercise Sets:" Margin="0,0,0,5"/>
+                        <Label Text="{Binding cycles2}" Margin="0,0,0,10"/>
+
+                        <Label Text="2. Rest Between Sets:" Margin="0,0,0,5"/>
+                        <Label Text="- Rest for a minimum of 3 minutes between sets." Margin="0,0,0,5"/>
+                        <Label Text="- Adjust the rest time according to your needs if you require more recovery." Margin="0,0,0,10"/>
+
+                        <Label Text="3. Rest Between Exercises:" Margin="0,0,0,5"/>
+                        <Label Text="- Take a break of at least 1 minute between different exercises." Margin="0,0,0,5"/>
+                        <Label Text="- Adjust the rest time if you feel you need more recovery." Margin="0,0,0,10"/>
+
+                        <Label Text="4. Measuring Break Times:" Margin="0,0,0,5"/>
+                        <Label Text="- Utilize the stopwatch available at the bottom of the page to accurately measure break times." Margin="0,0,0,5"/>
+                        <Label Text="- Start the stopwatch at the beginning of each break and reset it before starting the next set or exercise." Margin="0,0,0,10"/>
+
+                        <Label Text="5. Next exercise:" Margin="0,0,0,5"/>
+                        <Label Text="- To switch to the next exercise, drag the exercise card to the left." Margin="0,0,0,10"/>
+
+                        <Label Text="6. Maintaining a Consistent Pace:" Margin="0,0,0,5"/>
+                        <Label Text="- Strive to maintain a steady training pace, adjusting breaks to your needs while keeping the intensity at an appropriate level." Margin="0,0,0,10"/>
+
+                        <Label Text="7. Notes:" Margin="0,0,0,5"/>
+                        <Label Text="- Pay attention to proper exercise technique to avoid injuries." Margin="0,0,0,5"/>
+                        <Label Text="- Adjust the number of sets, breaks, and workout duration according to your fitness level." Margin="0,0,0,10"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+
+
+            </ScrollView>
+        </Grid>
+    </Border>
+</mct:Popup>
