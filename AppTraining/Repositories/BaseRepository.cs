@@ -24,7 +24,7 @@ namespace AppTraining.Repositories
         public BaseRepository()
         {
 
-            connection = new SQLiteConnection(Constants.DatabasePath, Constants.Flags);
+             connection = new SQLiteConnection(Constants.DatabasePath, Constants.Flags);
 
             
             connection.CreateTable<WorkoutNote>();

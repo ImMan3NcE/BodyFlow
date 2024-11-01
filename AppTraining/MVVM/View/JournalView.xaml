@@ -10,9 +10,9 @@
     
     
     
-    <Grid  BackgroundColor="DarkGray" Margin="1">
+    <Grid  BackgroundColor="Black" Margin="1">
         
-        <Image  Source="bgrv" Opacity="0.4" Aspect="AspectFill" />
+        <Image  Source="bgrv" Opacity="0.2" Aspect="AspectFill" />
 
         <CollectionView x:Name="clcJV" Grid.Row="1" ItemsSource="{Binding WorkoutNotes}" ItemsLayout="VerticalGrid"
                         SelectionMode="Single" SelectedItem="{Binding Selection, Mode=TwoWay}"  SelectionChangedCommand="{Binding SelectNote}" SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clcJV}}" >
@@ -27,7 +27,7 @@
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <Border BackgroundColor="DarkSlateGray" Stroke="Gray">
+                        <Border BackgroundColor="Black" Stroke="Gray">
 
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="120,120,12,12" />
@@ -36,7 +36,7 @@
                                 <Shadow Opacity="0.9"/>
                             </Border.Shadow>
 
-                            <Grid  RowDefinitions="Auto,Auto,*" HeightRequest="100"  Margin="10" >
+                            <Grid  RowDefinitions="Auto,Auto,*" HeightRequest="100"  Margin="10"  >
                                 
                                 <Label Text="{Binding WorkoutDate}"  Style="{StaticResource WorkoutDateLabelJV}" />
                                 <Label Grid.Row="1" Text="{Binding WorkoutName}"  Style="{StaticResource WorkoutNameLabelJV}"/>
