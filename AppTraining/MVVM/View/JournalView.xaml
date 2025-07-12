@@ -7,50 +7,77 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="DarkGray" >
 
-    
-    
-    
-    <Grid  BackgroundColor="Black" Margin="1">
-        
-        <Image  Source="bgrv" Opacity="0.2" Aspect="AspectFill" />
 
-        <CollectionView x:Name="clcJV" Grid.Row="1" ItemsSource="{Binding WorkoutNotes}" ItemsLayout="VerticalGrid"
-                        SelectionMode="Single" SelectedItem="{Binding Selection, Mode=TwoWay}"  SelectionChangedCommand="{Binding SelectNote}" SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clcJV}}" >
+
+
+    <Grid>
+        <!-- Tło z lekką przezroczystością -->
+        <Image Source="bgrv"
+               Opacity="0.15"
+               Aspect="AspectFill"
+               IsVisible="True" />
+
+        <!-- Główna lista notatek -->
+        <CollectionView x:Name="clcJV"
+                        ItemsSource="{Binding WorkoutNotes}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding Selection, Mode=TwoWay}"
+                        SelectionChangedCommand="{Binding SelectNote}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clcJV}}"
+                        ItemsLayout="VerticalList"
+                        Margin="10">
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
                         <SwipeView.LeftItems>
-                            <SwipeItems >
-                                <!--<SwipeItem Text="Delete" BackgroundColor="Gray" Command="{Binding Source={RelativeSource AncestorType=(x:Type local:JournalViewModel}}, Path=DeleteNoteCommand}" />-->
-                                <SwipeItem Text="Delete" IconImageSource="delete_jv" BackgroundColor="Gray" Command="{Binding Source={RelativeSource AncestorType={x:Type local:JournalViewModel}}, Path=DeleteNoteCommand}" />
-                                <SwipeItem Text="Update" IconImageSource="refresh_jv" BackgroundColor="DimGray" Command="{Binding Source={RelativeSource AncestorType={x:Type local:JournalViewModel}}, Path=UpdateNoteCommand}" />
+                            <SwipeItems>
+                                <SwipeItem Text="Usuń"
+                                           IconImageSource="delete_jv"
+                                           BackgroundColor="#B00020"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type local:JournalViewModel}}, Path=DeleteNoteCommand}" />
+                                <SwipeItem Text="Edytuj"
+                                           IconImageSource="refresh_jv"
+                                           BackgroundColor="#3700B3"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type local:JournalViewModel}}, Path=UpdateNoteCommand}" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <Border BackgroundColor="Black" Stroke="Gray">
-
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="120,120,12,12" />
-                            </Border.StrokeShape>
-                            <Border.Shadow>
-                                <Shadow Opacity="0.9"/>
-                            </Border.Shadow>
-
-                            <Grid  RowDefinitions="Auto,Auto,*" HeightRequest="100"  Margin="10"  >
-                                
-                                <Label Text="{Binding WorkoutDate}"  Style="{StaticResource WorkoutDateLabelJV}" />
-                                <Label Grid.Row="1" Text="{Binding WorkoutName}"  Style="{StaticResource WorkoutNameLabelJV}"/>
-                                <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Note}" Margin="10,0,0,0" />
-
-                            </Grid>
-                        </Border>
+                        <Frame Margin="5"
+                               Padding="15"
+                               CornerRadius="18"
+                               BackgroundColor="#1E1E1E"
+                               HasShadow="True">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="{Binding WorkoutDate}"
+                                       FontAttributes="Bold"
+                                       TextColor="White"
+                                       FontSize="14" />
+                                <Label Text="{Binding WorkoutName}"
+                                       FontSize="18"
+                                       TextColor="#FFB300"
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding Note}"
+                                       FontSize="14"
+                                       TextColor="LightGray"
+                                       LineBreakMode="WordWrap" />
+                            </VerticalStackLayout>
+                        </Frame>
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
 
-        <ImageButton Grid.Row="1" Source="addicon.png"  Command="{Binding AddNewNoteCommand}" Style="{StaticResource ImageButtonAddNote}" />
-        
+        <!-- Przycisk dodawania nowej notatki -->
+        <ImageButton Source="addicon.png"
+                     Command="{Binding AddNewNoteCommand}"
+                     WidthRequest="60"
+                     HeightRequest="60"
+                     BackgroundColor="#03DAC6"
+                     CornerRadius="30"
+                     HorizontalOptions="End"
+                     VerticalOptions="End"
+                     Margin="20"
+                     Shadow="{Shadow Opacity=0.8, Radius=10, Offset='5,5'}" />
     </Grid>
 </ContentPage>

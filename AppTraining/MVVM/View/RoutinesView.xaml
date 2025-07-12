@@ -9,90 +9,127 @@
     <!--xmlns:acrylic="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"-->
 
 
-    <Grid RowDefinitions=".19*,.81*" >
-        <Image Grid.Row="0" Grid.RowSpan="2" Source="bgrv" Style="{StaticResource ImageBG}" />
+    <Grid RowDefinitions="0.19*,0.81*">
+        <!-- Tło -->
+        <Image Grid.RowSpan="2" Source="bgrv"
+           Aspect="AspectFill"
+           Opacity="0.15"
+           IsVisible="True" />
 
-        <VerticalStackLayout Spacing="20" Margin="0,10,0,0">
+        <!-- Sekcja filtrów -->
+        <VerticalStackLayout Spacing="20" Margin="10,20,10,0" Grid.Row="0">
 
-
-            <HorizontalStackLayout   Spacing="15" HorizontalOptions="Center" >
-
-
-                <Button x:Name="btnLevelHard"  Command="{Binding SelectedFilter}" CommandParameter="{Binding Source={x:Reference Name=btnLevelHard}, Path=Text}" 
-                    Text="Hard" Style="{StaticResource ButtonRoutineLevel}"/>
-                <Button x:Name="btnLevelMedium" Command="{Binding SelectedFilter}" CommandParameter="{Binding Source={x:Reference Name=btnLevelMedium}, Path=Text}" 
-                    Text="Medium" Style="{StaticResource ButtonRoutineLevel}"/>
-                <Button x:Name="btnLevelEasy" Command="{Binding SelectedFilter}" CommandParameter="{Binding Source={x:Reference Name=btnLevelEasy}, Path=Text}" 
-                    Text="Easy"  Style="{StaticResource ButtonRoutineLevel}"/>
-                <Button x:Name="btnLevelAll" Command="{Binding SelectedFilter}" CommandParameter="{Binding Source={x:Reference Name=btnLevelAll}, Path=Text}" 
-         Text="All"   Style="{StaticResource ButtonRoutineLevel}"/>
-
+            <!-- Poziomy trudności -->
+            <HorizontalStackLayout Spacing="12" HorizontalOptions="Center">
+                <Button Text="Hard" x:Name="btnLevelHard"
+                    Style="{StaticResource ButtonRoutineLevel}"
+                    Command="{Binding SelectedFilter}"
+                    CommandParameter="{Binding Source={x:Reference btnLevelHard}, Path=Text}" />
+                <Button Text="Medium" x:Name="btnLevelMedium"
+                    Style="{StaticResource ButtonRoutineLevel}"
+                    Command="{Binding SelectedFilter}"
+                    CommandParameter="{Binding Source={x:Reference btnLevelMedium}, Path=Text}" />
+                <Button Text="Easy" x:Name="btnLevelEasy"
+                    Style="{StaticResource ButtonRoutineLevel}"
+                    Command="{Binding SelectedFilter}"
+                    CommandParameter="{Binding Source={x:Reference btnLevelEasy}, Path=Text}" />
+                <Button Text="All" x:Name="btnLevelAll"
+                    Style="{StaticResource ButtonRoutineLevel}"
+                    Command="{Binding SelectedFilter}"
+                    CommandParameter="{Binding Source={x:Reference btnLevelAll}, Path=Text}" />
             </HorizontalStackLayout>
 
-            <CollectionView x:Name="clcViewTypeOfExercises" ItemsSource="{Binding TypeOfExercises}" ItemsLayout="HorizontalGrid" HorizontalOptions="Center">
-
+            <!-- Typy ćwiczeń -->
+            <CollectionView x:Name="clcViewTypeOfExercises"
+                        ItemsSource="{Binding TypeOfExercises}"
+                        ItemsLayout="HorizontalList"
+                        HorizontalOptions="Fill">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Button Text="{Binding .}" Style="{StaticResource ButtonRoutineTypeOfExercises}" Margin="2.5,0,2.5,0"
-                         Command="{Binding BindingContext.SelectedFilter, Source={x:Reference Name=clcViewTypeOfExercises}}" CommandParameter="{Binding .}"/>
+                        <Frame CornerRadius="20"
+                           Padding="10,5"
+                           BackgroundColor="#303030"
+                           Margin="5,0"
+                           HasShadow="True">
+                            <Label Text="{Binding .}"
+                               TextColor="White"
+                               FontSize="14"
+                               HorizontalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectedFilter, Source={x:Reference clcViewTypeOfExercises}}"
+                                                      CommandParameter="{Binding .}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-            <!--<HorizontalStackLayout Spacing="10" HorizontalOptions="Start" WidthRequest="350" >
-                <Button Text="#abs" Style="{StaticResource ButtonRoutineTypeOfExercises}" 
-                        Command="{Binding SelectedFilter}" 
-                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
-                <Button Text="#cardio" Style="{StaticResource ButtonRoutineTypeOfExercises}"
-                        Command="{Binding SelectedFilter}" 
-                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
-                <Button Text="#legs" Style="{StaticResource ButtonRoutineTypeOfExercises}"
-                        Command="{Binding SelectedFilter}" 
-                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
-                <Button Text="#pull" Style="{StaticResource ButtonRoutineTypeOfExercises}"
-                        Command="{Binding SelectedFilter}" 
-                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
-                <Button Text="#push" Style="{StaticResource ButtonRoutineTypeOfExercises}"
-                        Command="{Binding SelectedFilter}" 
-                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
-                
-            </HorizontalStackLayout>-->
-
         </VerticalStackLayout>
 
-        <CollectionView x:Name="clcView" Grid.Row="1" ItemsSource="{Binding RoutinesList}" Margin="2" VerticalScrollBarVisibility="Never" >
+        <!-- Lista treningów -->
+        <CollectionView x:Name="clcView"
+                    Grid.Row="1"
+                    ItemsSource="{Binding RoutinesList}"
+                    Margin="10,10,10,20"
+                    VerticalScrollBarVisibility="Default">
             <CollectionView.ItemTemplate>
-
                 <DataTemplate>
+                    <Frame CornerRadius="20"
+                       Padding="15"
+                       Margin="0,5"
+                       BackgroundColor="#1E1E1E"
+                       HasShadow="True">
+                        <Grid ColumnDefinitions="0.7*,0.3*" RowDefinitions="Auto,Auto,Auto">
+                            <!-- Obrazek -->
+                            <Image Grid.RowSpan="3"
+                               Grid.Column="0"
+                               Source="{Binding Base}"
+                               Aspect="AspectFill"
+                               HeightRequest="90"
+                               WidthRequest="130"
+                               Margin="0,0,10,0"
+                               HorizontalOptions="Start" />
 
-                    <Grid Margin="20,5,20,20" >
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding BindingContext.GenerateTraining, Source={x:Reference Name=clcView}}" CommandParameter="{Binding .}"/>
-                        </Grid.GestureRecognizers>
+                            <!-- Nazwa -->
+                            <Label Text="{Binding RoutineName}"
+                               Grid.Column="1"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               TextColor="White" />
 
-                        <Border BackgroundColor="DarkGray" Stroke="DarkSlateGray" StrokeThickness="3" Opacity=".2" >
+                            <!-- Poziom -->
+                            <Label Text="{Binding Level}"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               FontSize="14"
+                               TextColor="#FFB300" />
 
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="12,120,12,120" />
-                            </Border.StrokeShape>
-                            <Border.Shadow>
-                                <Shadow Opacity="0.9"/>
-                            </Border.Shadow>
-                        </Border>
+                            <!-- Typ -->
+                            <Label Text="{Binding TypeOfExercises}"
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               FontSize="13"
+                               TextColor="LightGray" />
 
-                        <Grid ColumnDefinitions=".6*,.3*,.1*" RowDefinitions=".6*,.2*,.2*" Style="{StaticResource GridTemplateRoutines}" >
-                            <Image Grid.Column="0" Grid.Row="0" Source="{Binding Base}" Grid.RowSpan="3" Grid.ColumnSpan="3"  MaximumWidthRequest="126" MaximumHeightRequest="106" HorizontalOptions="End" Margin="0,0,50,0" />
-                            <Label Text="{Binding RoutineName}" Style="{StaticResource LabelRoutineName}"  Grid.ColumnSpan="2"/>
-                            <Label Grid.Row="1" Text="{Binding Level}" Style="{StaticResource LabelRoutineLevel}"  />
-                            <ImageButton Grid.Column="2" Grid.RowSpan="3" Style="{StaticResource ButtonFavorite}" Source="{Binding ImgFavorite}" Command="{Binding BindingContext.FavoriteRoutine, Source={x:Reference Name=clcView}}" CommandParameter="{Binding .}" SemanticProperties.Description="Favorites button" />
-                            <Label Grid.Row="2" Text="{Binding TypeOfExercises}" Style="{StaticResource LabelRoutineLevel}" Margin="0,0,0,0" Grid.ColumnSpan="3"/>
+                            <!-- Ulubione -->
+                            <ImageButton Grid.Column="1"
+                                     Grid.RowSpan="3"
+                                     Source="{Binding ImgFavorite}"
+                                     Command="{Binding BindingContext.FavoriteRoutine, Source={x:Reference clcView}}"
+                                     CommandParameter="{Binding .}"
+                                     HorizontalOptions="End"
+                                     BackgroundColor="Transparent"
+                                     HeightRequest="30"
+                                     WidthRequest="30" />
                         </Grid>
 
-                    </Grid>
-
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.GenerateTraining, Source={x:Reference clcView}}"
+                                              CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
     </Grid>
 </ContentPage>
